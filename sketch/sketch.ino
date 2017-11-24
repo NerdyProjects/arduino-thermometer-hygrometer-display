@@ -39,7 +39,7 @@ void printValues() {
     int post_comma = (temp - pre_comma) * 100;
     float humidity = bme.readHumidity();
     float abs_hum = (6.112f * exp((17.67f * temp)/(temp+243.5f)) * humidity * 2.1674f) / (273.15f+temp);
-    lcd.clear();
+    lcd.setCursor(0,0);
     /*lcd.print(pre_comma);
     lcd.print('.');
     lcd.print(post_comma);
