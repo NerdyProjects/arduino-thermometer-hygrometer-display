@@ -22,12 +22,15 @@ void setup() {
     lcd.print(F("No BME280 sensor"));
     while (1);
   }
+
+  /* set normal mode standby time to 125ms -> ~2 sec IIR filter time */
+  bme.writeByte(BME280_CONFIG, ((bme.parameter.IIRfilter << 2) & 0b00011100) | 0b01000000);
   delay(200);
 }
 
 void loop() {
   printValues();
-  delay(1000);
+  delay(2000);
 }
 
 void printValues() {
