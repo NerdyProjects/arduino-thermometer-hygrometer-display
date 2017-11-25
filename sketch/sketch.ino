@@ -22,10 +22,15 @@ void setup() {
     lcd.print(F("No BME280 sensor"));
     while (1);
   }
-
+/*
+ * This needs to happen in the library because the BME280 datasheet states: 
+ * The “config” register sets the rate, filter and interface options of the device. Writes to the “config”
+register in normal mode may be ignored. In sleep mode writes are not ignored.
+ */
+  /*bme.writeByte(BME280_CONFIG, ((bme.parameter.IIRfilter << 2) & 0b00011100) | 0b01000000);
   /* set normal mode standby time to 125ms -> ~2 sec IIR filter time */
-  bme.writeByte(BME280_CONFIG, ((bme.parameter.IIRfilter << 2) & 0b00011100) | 0b01000000);
-  delay(200);
+  /*bme.writeByte(BME280_CONFIG, ((bme.parameter.IIRfilter << 2) & 0b00011100) | 0b01000000); */
+  delay(150);
 }
 
 void loop() {
